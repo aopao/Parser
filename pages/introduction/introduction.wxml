@@ -1,0 +1,182 @@
+<!--pages/introduction/introduction.wxml-->
+<view class="page">
+  <view class="page__hd">
+    <view class="page__title">功能介绍</view>
+    <view class="page__desc">Introduction</view>
+  </view>
+  <view class="page__bd">
+    <view class="weui-article">
+      <view class="weui-article__h1">解析style标签</view>
+      <view class="weui-article__section">
+        支持解析
+        <text class="code">style</text>标签中的全局样式，包括按
+        <text class="code">class</text>名匹配，按
+        <text class="code">id</text>名匹配，按标签名匹配三种方式，例如：
+        <view class="pre">
+          <text decode>&lt;</text>
+          <text style="color:#429757">style</text>
+          <text decode>&gt;\n</text>
+          <text style="color:#6f42c1">.demo</text>
+          <text space="nbsp">{\n  </text>
+          <text style="color:#005cc5">font-style</text>
+          <text>: </text>
+          <text style="color:#005cc5">italic</text>
+          <text>;\n}\n</text>
+          <text style="color:#6f42c1">#demo2</text>
+          <text space="nbsp">{\n  </text>
+          <text style="color:#005cc5">font-weight</text>
+          <text>: </text>
+          <text style="color:#005cc5">bold</text>
+          <text>;\n}\n</text>
+          <text style="color:#6f42c1">p</text>
+          <text space="nbsp">{\n  </text>
+          <text style="color:#005cc5">text-align</text>
+          <text>: </text>
+          <text style="color:#005cc5">center</text>
+          <text space="nbsp">;\n  </text>
+          <text style="color:#005cc5">font-size</text>
+          <text>: </text>
+          <text style="color:#005cc5">30px</text>
+          <text decode>;\n}\n&lt;/</text>
+          <text style="color:#429757">style</text>
+          <text decode>&gt;\n&lt;</text>
+          <text style="color:#429757">p</text>
+          <text decode space="nbsp">&gt;\n  &lt;</text>
+          <text style="color:#429757">span</text>
+          <text style="color:#6f42c1"> class</text>
+          <text decode>="demo"&gt;Hello &lt;/</text>
+          <text style="color:#429757">span</text>
+          <text decode space="nbsp">&gt;\n  &lt;</text>
+          <text style="color:#429757">span</text>
+          <text style="color:#6f42c1"> id</text>
+          <text decode>="demo2"&gt;World!&lt;/</text>
+          <text style="color:#429757">span</text>
+          <text decode>&gt;\n&lt;/</text>
+          <text style="color:#429757">p</text>
+          <text decode>&gt;</text>
+        </view>
+        <Parser html='<style>.demo{font-style:italic;}#demo2{font-weight:bold;}p{text-align:center;font-size:30px;}</style><p><span class="demo">Hello </span><span id="demo2">World!</span></p>' />
+        <view style="color:gray;text-align:center;font-size:12px;">解析结果</view>
+      </view>
+      <view class="weui-article__h1">自定义标签样式</view>
+      <view class="weui-article__section">
+        可以对标签设置任意自定义的样式，例如：
+        <view class="pre">
+          <text style="color:#6f42c1">data</text>
+          <text space="nbsp">:{\n  </text>
+          <text style="color:#005cc5">tagStyle</text>
+          <text space="nbsp">:{\n    code:"</text>
+          <text style="color:#6a737d">font-style:italic;color:#005cc5"</text>
+          <text space="nbsp">\n  }\n}</text>
+        </view>
+        <view class="pre">
+          <text decode>&lt;</text>
+          <text style="color:#429757">Parser</text>
+          <text style="color:#6f42c1"> html</text>
+          <text>="</text>
+          <text style="color:#6a737d" decode>&lt;code&gt;test&lt;/code&gt;</text>
+          <text>" </text>
+          <text style="color:#6f42c1">tagStyle</text>
+          <text>="</text>
+          <text style="color:#6a737d">{{tagString}}</text>
+          <text decode>"/&gt;</text>
+        </view>
+        <Parser html="<code>test</code>" tagStyle="{{tagStyle}}" />
+      </view>
+      <view class="weui-article__h1">支持丰富的标签</view>
+      <view class="weui-article__h2">媒体组件</view>
+      <view class="weui-article__section" style="font-size:14px;border-left:1px solid #dfe2e5;border-top:1px solid #dfe2e5;">
+        <view style="display:flex;font-weight:bold;">
+          <view class="td" style="width:30%">组件</view>
+          <view class="td" style="width:70%;">属性</view>
+        </view>
+        <view wx:for="{{media}}" wx:key style="display:flex;background-color:{{index%2==0?'white':'#f6f8fa'}}">
+          <view class="td" style="width:30%">{{item.name}}</view>
+          <view class="td" style="width:70%;">
+            <text>{{item.attrs}}</text>
+          </view>
+        </view>
+      </view>
+      <view class="weui-article__h2">表格和列表</view>
+      <view class="weui-article__section" style="font-size:14px;border-left:1px solid #dfe2e5;border-top:1px solid #dfe2e5;">
+        <view style="display:flex;font-weight:bold;">
+          <view class="td" style="width:30%">组件</view>
+          <view class="td" style="width:70%;">属性</view>
+        </view>
+        <view wx:for="{{table}}" wx:key style="display:flex;background-color:{{index%2==0?'white':'#f6f8fa'}}">
+          <view class="td" style="width:30%">{{item.name}}</view>
+          <view class="td" style="width:70%;">{{item.attrs}}</view>
+        </view>
+      </view>
+      <view class="weui-article__h2">文本标签</view>
+      <view class="weui-article__section" style="font-size:14px;border-left:1px solid #dfe2e5;border-top:1px solid #dfe2e5;">
+        <view style="display:flex;font-weight:bold;">
+          <view class="td" style="width:30%">组件</view>
+          <view class="td" style="width:70%;">属性</view>
+        </view>
+        <view wx:for="{{text}}" wx:key style="display:flex;background-color:{{index%2==0?'white':'#f6f8fa'}}">
+          <view class="td" style="width:30%">{{item.name}}</view>
+          <view class="td" style="width:70%;">{{item.attrs}}</view>
+        </view>
+      </view>
+      <view class="weui-article__h2">其他标签</view>
+      <view class="weui-article__section" style="font-size:14px;border-left:1px solid #dfe2e5;border-top:1px solid #dfe2e5;">
+        <view style="display:flex;font-weight:bold;">
+          <view class="td" style="width:30%">组件</view>
+          <view class="td" style="width:70%;">属性</view>
+        </view>
+        <view wx:for="{{default}}" wx:key style="display:flex;background-color:{{index%2==0?'white':'#f6f8fa'}}">
+          <view class="td" style="width:30%">{{item.name}}</view>
+          <view class="td" style="width:70%;">{{item.attrs}}</view>
+        </view>
+      </view>
+      <view class="weui-article__h1">事件效果</view>
+      <view class="weui-article__section">
+        <view class="weui-article__h2">图片点击</view>
+        <Parser html='<ol><li>点击图片可以预览，左右滑动可以查看所有的图片</li><li>可以通过设置传入的<code>preview</code>属性决定是否允许图片预览；另外支持对图片进行单独设置，对于一些装饰性的图片，可以对其设置<code>ignore</code>属性，设置后将无法预览</li></ol>' tagStyle="{{tagStyle}}" />
+        <text>\n</text>
+        <view class="weui-article__h2">链接点击</view>
+        <Parser html='<ol><li>点击链接会有下划线和阴影的效果，若链接为小程序路径，则点击时跳转至相应页面；若为外部链接，则长按可复制链接</li><li>可以通过设置传入的<code>selectable</code>属性决定是否允许链接点击；另外支持对链接进行单独设置，对于一些无用的链接，可以对其设置<code>ignore</code>属性，设置后将无法点击</li></ol>' tagStyle="{{tagStyle}}" />
+      </view>
+      <view class="weui-article__h1">容错性与稳定性</view>
+      <view class="weui-article__section">
+        容错性强，稳定性高，以下情况都不会出错：
+        <view class="pre">
+          <text style="color:#6a737d" decode>&lt;!--冒号不匹配--&gt;</text>
+          <text decode>\n&lt;</text>
+          <text style="color:#22863a">div</text>
+          <text style="color:#6f42c1"> style</text>
+          <text>="font-family:"</text>
+          <text style="color:#6f42c1">宋体</text>
+          <text decode>""&gt;Hello&lt;/</text>
+          <text style="color:#22863a">div</text>
+          <text decode>&gt;\n</text>
+          <text style="color:#6a737d" decode>&lt;!--标签首尾不匹配--&gt;</text>
+          <text decode>\n&lt;</text>
+          <text style="color:#22863a">div</text>
+          <text decode>&gt; World&lt;/</text>
+          <text style="color:#22863a">label</text>
+          <text decode>&gt;\n</text>
+          <text style="color:#6a737d" decode>&lt;!--异形标签--&gt;</text>
+          <text decode>\n&lt;</text>
+          <text style="color:#22863a">o:p</text>
+          <text decode>&gt;&lt;/</text>
+          <text style="color:#22863a">o:p</text>
+          <text decode>&gt;\n</text>
+          <text style="color:#6a737d" decode>&lt;!--缺少尾标签--&gt;</text>
+          <text decode>\n&lt;</text>
+          <text style="color:#22863a">div</text>
+          <text decode>&gt;!</text>
+        </view>
+      </view>
+      <view class="weui-article__h1">性能指标</view>
+      <view class="weui-article__section">解析效率高，支持无限层级，包装成自定义组件，简便易用，大小仅约
+        <text class="code">33KB</text>
+      </view>
+      <view class="weui-article__h1">后端解析</view>
+      <view class="weui-article__section">该插件同样可以应用在后端
+        <text class="code">node.js</text>中，通过在后端提前解析好
+        <text class="code">html</text>字符串，可以节省解析的时间，提高页面性能</view>
+    </view>
+  </view>
+</view>

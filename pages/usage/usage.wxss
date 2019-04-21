@@ -1,0 +1,43 @@
+/* pages/usage/usage.wxss */
+.pre{
+  background-color:#f6f8fa;
+  padding:5px;
+  margin-top:10px;
+  margin-bottom:10px;
+  border-radius:5px;
+  font-size:13px;
+  color:#24292e;
+  font-family: monospace;
+}
+.code{
+  font-style:italic;
+  color:#005cc5;
+  margin-left:1px;
+  margin-right:3px;
+  font-family: monospace;
+}
+.td{
+  padding:3px;
+  border-right:1px solid #dfe2e5;
+  border-bottom:1px solid #dfe2e5;
+  display:flex;
+  justify-content: center;
+  align-items:center;
+}
+.weui-article {
+  padding: 20px 15px;
+  font-size: 15px;
+}
+.weui-article__section {
+  margin-bottom: 1.5em;
+}
+.weui-article__h1 {
+  font-size: 18px;
+  font-weight: 400;
+  margin-bottom: 0.9em;
+}
+.weui-article__h2 {
+  font-size: 16px;
+  font-weight: 400;
+  margin-bottom: 0.34em;
+}
