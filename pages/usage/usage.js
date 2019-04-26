@@ -21,9 +21,13 @@ Page({
       notice: '自定义组件样式'
     }],
     versions: [{
-      version: ">=1.6.6",
+      version: ">=2.2.5",
       function: "完全正常",
-      percent: "99.91%"
+      percent: "98.17%"
+    }, {
+      version: "1.6.6-2.2.4",
+      function: "部分html实体无法显示",
+      percent: "1.71%"
     }, {
       version: "<1.6.6",
       function: "无法使用",
