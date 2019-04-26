@@ -14,6 +14,7 @@ var trustAttrs = {
   href: true,
   id: true,
   ignore: true,
+  language: true,
   loop: true,
   name: true,
   poster: true,
@@ -80,6 +81,21 @@ Parser.prototype.onopentagname = function(name) {
 Parser.prototype.onopentagend = function() {
   if (this._attribs) {
     this._cbs.onopentag(this._tagname, this._attribs);
+    if (this._tagname == 'pre' && this._attribs.language) {
+      try {
+        var Prism = require('./prism.js');
+        if (Prism.languages[this._attribs.language]) {
+          var index = this._tokenizer._buffer.indexOf("</pre>", this._tokenizer._index);
+          if (index == -1) index = this._tokenizer._buffer.length;
+          var content = this._tokenizer._buffer.substring(this._tokenizer._index + 1, index);
+          var html = Prism.highlight(content, Prism.languages[this._attribs.language], this._attribs.language)
+          html = html.replace(/\n/g, '<br />');
+          this._tokenizer._buffer = this._tokenizer._buffer.replace(content, html);
+        }
+      } catch (e) {
+        console.warn("未装载代码高亮支持包")
+      }
+    }
     this._attribs = null;
   }
   if (voidTag[this._tagname]) this._cbs.onclosetag(this._tagname);

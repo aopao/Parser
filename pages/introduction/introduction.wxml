@@ -95,6 +95,18 @@
         <text>解析结果：</text>
         <Parser html="<span>&#x8FD9;&#x662F;&#x5B9E;&#x4F53;&#x7F16;&#x7801;</span>" />
       </view>
+      <view class="weui-article__h1">支持代码高亮</view>
+      <view class="weui-article__section">
+        <view class="pre">
+          <text decode>&lt;</text>
+          <text style="color:#429757">Parser</text>
+          <text style="color:#6f42c1"> html</text>
+          <text style="color:#6a737d" decode>='&lt;pre language = "javascript" &gt;function test{ console.log("Hello World!"); }&lt;/pre&gt;'</text>
+          <text decode> /&gt;</text>
+        </view>
+        解析结果：
+        <Parser html='<pre language="javascript">function test{\n  console.log("Hello World!");\n}</pre>' />
+      </view>
       <view class="weui-article__h1">支持丰富的标签</view>
       <view class="weui-article__h2">媒体组件</view>
       <view class="weui-article__section" style="font-size:14px;border-left:1px solid #dfe2e5;border-top:1px solid #dfe2e5;">
@@ -117,7 +129,9 @@
         </view>
         <view wx:for="{{table}}" wx:key style="display:flex;background-color:{{index%2==0?'white':'#f6f8fa'}}">
           <view class="td" style="width:30%">{{item.name}}</view>
-          <view class="td" style="width:70%;"><text>{{item.attrs}}</text></view>
+          <view class="td" style="width:70%;">
+            <text>{{item.attrs}}</text>
+          </view>
         </view>
       </view>
       <view class="weui-article__h2">文本标签</view>
@@ -190,7 +204,7 @@
       </view>
       <view class="weui-article__h1">性能指标</view>
       <view class="weui-article__section">解析效率高，支持无限层级，包装成自定义组件，简便易用，大小仅约
-        <text class="code">26.7KB</text>
+        <text class="code">28KB</text>
       </view>
       <view class="weui-article__h1">后端解析</view>
       <view class="weui-article__section">该插件同样可以应用在后端

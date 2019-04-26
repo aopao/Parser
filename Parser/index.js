@@ -13,7 +13,6 @@ Component({
         } else if (typeof html == 'string') {
           var that = this;
           html2nodes(html, this.data.tagStyle).then(function(e) {
-            var parseok = new Date().getTime();
             that.triggerEvent('parse', e)
             imgList = e.imgList;
             that.setData({
@@ -36,10 +35,6 @@ Component({
     'tagStyle': {
       type: Object,
       value: {}
-    },
-    'space': {
-      type: null,
-      value: false
     },
     'lazyload': {
       type: Boolean,

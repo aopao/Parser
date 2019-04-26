@@ -181,8 +181,10 @@ DomHandler.prototype.onopentag = function(name, attrs) {
       attrs.style = 'text-align:center;' + attrs.style;
       break;
     case 'pre':
-      name = 'div';
       attrs.style = 'background-color:#f6f8fa;padding:5px;margin:5px 0 5px 0;border-radius:5px;font-family:monospace;white-space: pre-line;' + attrs.style;
+      for (var item of this._tagStack) {
+        if (trustTag[item.name] == Common) item.continue = true;
+      }
       break;
     case 'u':
       name = 'span';

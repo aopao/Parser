@@ -181,6 +181,7 @@ Page({
               <p>插入和删除文本：<del>我想出去玩</del>，不你不想，<ins>你想学习</ins></p>
               <p>引用：<q>这是一句引用的文字</q>，这是<code>code</code>标签</p>
               <p><strong>粗体</strong>与<i>斜体</i></p>
+              <p>连续&emsp;&emsp;&emsp;空格</p>
             </p>
           </section>
         </section>
@@ -199,7 +200,7 @@ Page({
   </section>
   <blockquote>段落引用：一切都像刚睡醒的样子，欣欣然张开了眼。山朗润起来了，水涨起来了，太阳的脸红起来了。</blockquote>
   <br />
-  <pre>function test{\n  console.log("Hello World!");\n}</pre>
+  <pre language="javascript">function test{\n  console.log("Hello World!");\n}</pre>
   <div style="color:gray;text-align:center;font-size:12px;margin-top:-3px;">pre标签</div>
   <br />
   <h1>h1标题</h1>

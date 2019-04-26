@@ -36,17 +36,17 @@
   | u |  |
   | center |  |
   | font | face, color |
-  | pre |  |
+  | pre | language |
   | section |  |
   | style |  |
   | body |  |
 
-  另外，对于不在支持列表中的标签，除个别会直接移除外，都会被转换为`div`标签，因此可以使用一些语义化标签，如`article`, `address`等
+  另外，对于不在支持列表中的标签，除个别会直接移除外，都会被转换为`div`标签，因此可以使用一些语义化标签，如`article`, `address`等，`pre`标签支持代码高亮
   
   示例：  
   ![解析表格](https://i.imgur.com/6NgFTgt.png)  
   ![解析文字](https://i.imgur.com/O0WdTNw.png)  
-  ![解析文字](https://i.imgur.com/4Bfg8E0.png)
+  ![解析文字](https://i.imgur.com/ZVmea77.png)
 - 图片支持大小自适应，点击图片可以预览（预览时通过左右滑动可以查看所有图片）；对于一些装饰性的图片，可以对其设置`ignore`属性，设置后将无法预览  
 
   ![解析图片](https://i.imgur.com/gLu9CnI.gif)  
@@ -70,10 +70,10 @@
   <div>!
   ```  
  
-- 功能强大，支持无限层级，解析速度快，包大小仅约`26.7KB`  
+- 功能强大，支持无限层级，解析速度快，包大小仅约`28KB`  
 ## 使用方法 ##
-1. 下载Parser文件夹至小程序目录  
-   ![页面结构](https://i.imgur.com/tuTGsgf.png)
+1. 下载Parser文件夹至小程序目录（其中`prism.js`是可选的代码高亮支持包）  
+   ![页面结构](https://i.imgur.com/NseKucJ.jpg)
    
 2. 在需要引用的页面的`json`文件中添加
    ``` json
@@ -100,7 +100,6 @@
   | 属性 | 类型 | 默认值 | 必填 | 说明 |
   |:----:|:----:|:----:|:----:|:----:|
   | html | String/Object/Array | | 是 | 要显示的富文本数据，具体格式见下方说明 |
-  | space | String/Boolean | false | 否 | 连续空格格式 |
   | lazyload | Boolean | false | 否 | 图片是否开启懒加载 |
   | tagStyle | Object | {} | 否 | 设置标签的默认样式 |
   
@@ -109,17 +108,12 @@
     2. `object`类型：一个形如`{ nodes:[Array],imgList:[Array] }`的结构体，其中nodes数组的格式基本同[rich-text](https://developers.weixin.qq.com/miniprogram/dev/component/rich-text.html)，对于该节点下有`img`，`video`，`a`标签的，需要将`continue`属性设置为`true`，否则将直接使用`rich-text`组件渲染，可能导致图片无法预览，链接无法点击等问题，imgList为其中所有图片地址的数组（回调函数`bindparser`的返回值就是这样的结构体）
     3. `array`类型：格式要求同上（用此格式传入预览图片时，将`不能`通过左右滑动查看所有图片）  
     4. 使用b, c方法可以节省解析的时间，提高性能
-  - space格式（同[rich-text](https://developers.weixin.qq.com/miniprogram/dev/component/rich-text.html)）：
-    
-    | 值 | 说明 |
-    |:----:|:----:|
-    | ensp | 中文字符空格一半大小 |
-    | emsp | 中文字符空格大小 |
-    | nbsp | 根据字体设置的空格大小 |  
-    | {{false}} | 不显示连续空格 |
   - 关于tagStyle  
-    可以设置标签的默认样式，如`{ body:"margin:5px" }`
-  - 回调函数
+    可以设置标签的默认样式，如`{ body:"margin:5px" }`  
+
+- 高亮支持包  
+  有显示源代码需要的，可以引入代码高亮支持包`prism.js`，引入后对于`pre`标签内的代码可以高亮显示（需要设置`language`属性，否则没有高亮效果），例如`<pre language="javascript">...</pre>`，目前支持的语言有`javascript`, `css`, `html`, `xml`等，如需要更多语言支持，请前往[prismjs官网](https://prismjs.com/download.html)下载对应语言的支持包并替换此文件
+- 回调函数
   
     | 名称 | 功能 | 说明 |
     |:----:|:----:|:----:|
@@ -131,8 +125,7 @@
   
     | 版本 | 功能 | 覆盖率 |
     |:---:|:---:|:---:|
-    | >=2.4.1 | 全部正常 | 96.29% |
-    | 1.6.6-2.4.0 | 无法显示连续空格 | 3.57% |
+    | >=1.6.6 | 全部正常 | 99.91% |
     | <1.6.6 | 无法使用 | 0.09% |
 
 ## 后端解析 ##
@@ -184,10 +177,12 @@ Parser(html,tagStyle).then(function(e){
 - 2019.4.26:
   1. `A` 增加支持`pre`, `u`, `center`, `source`等标签
   2. `A` 增加`bindlinkpress`回调函数，在链接受到点击时触发，开发者可以在此回调中进行进一步操作（如下载和打开文档等）
-  3. `U` 对于不在支持列表中的标签，除个别直接移除外，都会被转为`div`标签，因此可以使用一些语义化标签，如`article`, `address`等
-  4. 精简插件包的大小至`26.7KB`，提高了解析效率和渲染效率（约`10%`）
-  5. `D` 删除了`preview`, `selectable`属性，默认允许图片预览和链接点击
-  6. `F` 修复了已知`bug`
+  3. `A` 增加支持代码高亮
+  4. `U` 对于不在支持列表中的标签，除个别直接移除外，都会被转为`div`标签，因此可以使用一些语义化标签，如`article`, `address`等
+  5. 精简插件包的大小至`28KB`，提高了解析效率和渲染效率（约`10%`）
+  6. `D` 删除了`preview`, `selectable`属性，默认允许图片预览和链接点击
+  7. `D` 删除了`space`属性，由于设置连续空格会使得标签间的空格都被显示，导致错误的效果，因此取消了这一属性；如需要显示连续空格，请使用实体编码的空格，如`&ensp;`, `&emsp;`等
+  7. `F` 修复了已知`bug`
 - 2019.4.21：
   1. `A` 增加了`tagStyle`属性，支持对标签设置自定义样式
   2. `A` 发布了`demo`小程序
