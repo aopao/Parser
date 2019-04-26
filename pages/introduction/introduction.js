@@ -10,14 +10,17 @@ Page({
       attrs: 'alt, src, height, width, ignore'
     }, {
       name: 'video',
-      attrs: 'src, controls, loops, height, width'
+      attrs: 'src, controls, loop, height, width'
     }, {
       name: 'audio',
-      attrs: 'src, controls, loops, \nposter, name, author'
+      attrs: 'src, controls, loop, \nposter, name, author'
+    }, {
+      name: 'source',
+      attrs: 'src（仅限用于video和audio中）'
     }],
     table: [{
       name: 'table',
-      attrs: 'width'
+      attrs: 'width, align'
     }, {
       name: 'thead'
     }, {
@@ -48,7 +51,7 @@ Page({
     }],
     text: [{
       name: 'a',
-      attrs: 'ignore'
+      attrs: 'href'
     }, {
       name: 'abbr'
     }, {
@@ -58,13 +61,16 @@ Page({
     }, {
       name: 'br'
     }, {
+      name: 'center'
+    }, {
       name: 'code'
     }, {
       name: 'dd'
     }, {
       name: 'del'
     }, {
-      name: 'div'
+      name: 'div',
+      attrs: 'align'
     }, {
       name: 'dl'
     }, {
@@ -77,8 +83,7 @@ Page({
     }, {
       name: 'h1'
     }, {
-      name: 'h2',
-      attrs: ''
+      name: 'h2'
     }, {
       name: 'h3'
     }, {
@@ -96,7 +101,10 @@ Page({
     }, {
       name: 'label'
     }, {
-      name: 'p'
+      name: 'p',
+      attrs: 'align'
+    }, {
+      name: 'pre'
     }, {
       name: 'q'
     }, {
@@ -109,6 +117,8 @@ Page({
       name: 'sub'
     }, {
       name: 'sup'
+    }, {
+      name: 'u'
     }],
     default: [{
       name: 'html'

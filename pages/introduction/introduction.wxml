@@ -83,6 +83,18 @@
         </view>
         <Parser html="<code>test</code>" tagStyle="{{tagStyle}}" />
       </view>
+      <view class="weui-article__h1">解析实体编码</view>
+      <view class="weui-article__section">
+        <view class="pre">
+          <text decode>&lt;</text>
+          <text style="color:#429757">span</text>
+          <text decode>&gt;&#x8FD9; &#x662F; &#x5B9E; &#x4F53; &#x7F16; &#x7801;&lt;/</text>
+          <text style="color:#429757">span</text>
+          <text decode>&gt;</text>
+        </view>
+        <text>解析结果：</text>
+        <Parser html="<span>&#x8FD9;&#x662F;&#x5B9E;&#x4F53;&#x7F16;&#x7801;</span>" />
+      </view>
       <view class="weui-article__h1">支持丰富的标签</view>
       <view class="weui-article__h2">媒体组件</view>
       <view class="weui-article__section" style="font-size:14px;border-left:1px solid #dfe2e5;border-top:1px solid #dfe2e5;">
@@ -105,7 +117,7 @@
         </view>
         <view wx:for="{{table}}" wx:key style="display:flex;background-color:{{index%2==0?'white':'#f6f8fa'}}">
           <view class="td" style="width:30%">{{item.name}}</view>
-          <view class="td" style="width:70%;">{{item.attrs}}</view>
+          <view class="td" style="width:70%;"><text>{{item.attrs}}</text></view>
         </view>
       </view>
       <view class="weui-article__h2">文本标签</view>
@@ -130,13 +142,20 @@
           <view class="td" style="width:70%;">{{item.attrs}}</view>
         </view>
       </view>
+      <view class="weui-article__h2">附注：</view>
+      <view class="weui-article__section">
+        对于不在上述列表中标签，除个别会被直接移除外，都会被转换为
+        <text class="code">div</text>标签，因此可以使用一些语义化标签，如
+        <text class="code">article</text>，
+        <text class="code">address</text>等
+      </view>
       <view class="weui-article__h1">事件效果</view>
       <view class="weui-article__section">
         <view class="weui-article__h2">图片点击</view>
-        <Parser html='<ol><li>点击图片可以预览，左右滑动可以查看所有的图片</li><li>可以通过设置传入的<code>preview</code>属性决定是否允许图片预览；另外支持对图片进行单独设置，对于一些装饰性的图片，可以对其设置<code>ignore</code>属性，设置后将无法预览</li></ol>' tagStyle="{{tagStyle}}" />
+        <Parser html='<ol><li>点击图片可以预览，左右滑动可以查看所有的图片</li><li>对于一些装饰性的图片，可以对其设置<code>ignore</code>属性，设置后将无法预览</li></ol>' tagStyle="{{tagStyle}}" />
         <text>\n</text>
         <view class="weui-article__h2">链接点击</view>
-        <Parser html='<ol><li>点击链接会有下划线和阴影的效果，若链接为小程序路径，则点击时跳转至相应页面；若为外部链接，则长按可复制链接</li><li>可以通过设置传入的<code>selectable</code>属性决定是否允许链接点击；另外支持对链接进行单独设置，对于一些无用的链接，可以对其设置<code>ignore</code>属性，设置后将无法点击</li></ol>' tagStyle="{{tagStyle}}" />
+        <Parser html='<ol><li>点击链接会有下划线和半透明的效果，若链接为小程序路径，则点击时跳转至相应页面；若为外部链接，则长按可复制链接</li><li>点击链接时会触发<code>bindlinkpress</code>事件，并返回相应的链接，可以进行进一步的操作（如文档链接可以在回调中进行下载和打开等）</li></ol>' tagStyle="{{tagStyle}}" />
       </view>
       <view class="weui-article__h1">容错性与稳定性</view>
       <view class="weui-article__section">
@@ -171,7 +190,7 @@
       </view>
       <view class="weui-article__h1">性能指标</view>
       <view class="weui-article__section">解析效率高，支持无限层级，包装成自定义组件，简便易用，大小仅约
-        <text class="code">33KB</text>
+        <text class="code">26.7KB</text>
       </view>
       <view class="weui-article__h1">后端解析</view>
       <view class="weui-article__section">该插件同样可以应用在后端

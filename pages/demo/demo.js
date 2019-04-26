@@ -1,8 +1,7 @@
 // pages/demo/demo.js
 Page({
   data: {
-    html: `
-<style>
+    html: `<style>
   body {
     margin-left:3%;
     margin-right:3%;
@@ -182,7 +181,6 @@ Page({
               <p>插入和删除文本：<del>我想出去玩</del>，不你不想，<ins>你想学习</ins></p>
               <p>引用：<q>这是一句引用的文字</q>，这是<code>code</code>标签</p>
               <p><strong>粗体</strong>与<i>斜体</i></p>
-              <p>连续     空格</p>
             </p>
           </section>
         </section>
@@ -200,6 +198,9 @@ Page({
     </section>
   </section>
   <blockquote>段落引用：一切都像刚睡醒的样子，欣欣然张开了眼。山朗润起来了，水涨起来了，太阳的脸红起来了。</blockquote>
+  <br />
+  <pre>function test{\n  console.log("Hello World!");\n}</pre>
+  <div style="color:gray;text-align:center;font-size:12px;margin-top:-3px;">pre标签</div>
   <br />
   <h1>h1标题</h1>
   <h2>h2标题</h2>
@@ -260,9 +261,9 @@ Page({
   </p>
   <br />
   <div style="text-align:center;">
-    <audio src="http://ws.stream.qqmusic.qq.com/M500001VfvsJ21xFqb.mp3?guid=ffffffff82def4af4b12b3cd9337d5e7&uin=346897220&vkey=6292F51E1E384E06DCBDC9AB7C49FD713D632D313AC4858BACB8DDD29067D3C601481D36E62053BF8DFEAF74C0A5CCFADD6471160CAF3E6A&fromtag=46" poster= "http://y.gtimg.cn/music/photo_new/T002R300x300M000003rsKF44GyaSk.jpg?max_age=2592000" name="此时此刻" author="许巍" controls=true />
+    <audio src="http://ws.stream.qqmusic.qq.com/M500001VfvsJ21xFqb.mp3?guid=ffffffff82def4af4b12b3cd9337d5e7&uin=346897220&vkey=6292F51E1E384E06DCBDC9AB7C49FD713D632D313AC4858BACB8DDD29067D3C601481D36E62053BF8DFEAF74C0A5CCFADD6471160CAF3E6A&fromtag=46" poster= "http://y.gtimg.cn/music/photo_new/T002R300x300M000003rsKF44GyaSk.jpg?max_age=2592000" name="此时此刻" author="许巍" controls></audio>
     <br />
-    <video src="http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400" controls=true />
+    <video src="http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400" controls></video>
   </div>
   <br />
   <section data-id="93972" style="border: 0px none;">
@@ -292,6 +293,9 @@ Page({
       <br />
       <a href="https://github.com/jin-yufeng/Parser">https://github.com/jin-yufeng/Parser</a>
       <p style="font-size:12px;color:gray">外部链接，长按可以复制</p>
+      <br />
+      <a href="https://6874-html-foe72-1259071903.tcb.qcloud.la/%E9%99%84%E4%BB%B6%E7%A4%BA%E4%BE%8B.docx?sign=558e8df1107441b038ecbb5aaafefa11&t=1556120797">附件示例.docx</a>
+      <p style="font-size:12px;color:gray">附件链接，点击将下载和打开</p>
     </div>
     <br />
   </section>
@@ -391,4 +395,24 @@ Page({
   </table>
 </body>`
   },
+  downloadfile(e) {
+    if (e.detail.indexOf('docx') != -1) {
+      wx.showLoading({
+        title: '附件下载中',
+      })
+      wx.downloadFile({
+        url: e.detail,
+        success(res) {
+          wx.hideLoading();
+          const filePath = res.tempFilePath
+          wx.openDocument({
+            filePath,
+            success(res) {
+              console.log('打开文档成功')
+            }
+          })
+        }
+      })
+    }
+  }
 })

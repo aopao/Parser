@@ -2,15 +2,15 @@
 page {
   background-color: #f8f8f8;
 }
-.weui-flex{
-  display:-webkit-box;
-  display:-webkit-flex;
-  display:flex
+.weui-flex {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
 }
-.weui-flex__item{
-  -webkit-box-flex:1;
-  -webkit-flex:1;
-  flex:1
+.weui-flex__item {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
 }
 .kind-list__item {
   margin: 10px 0;
@@ -29,15 +29,15 @@ page {
   padding: 20px;
   -webkit-transition: opacity 0.3s;
   transition: opacity 0.3s;
-  align-items:center;
+  align-items: center;
 }
-button{
+button {
   background-color: white;
-  text-align:left;
-  font-size:16px;
-  margin:0;
-  padding:0;
+  text-align: left;
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
 }
-button::after{
-  border:none;
+button::after {
+  border: none;
 }

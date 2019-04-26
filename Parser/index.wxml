@@ -1,21 +1,23 @@
 <!--Parser-->
 <template name='element'>
+  <!--段落-->
+  <scroll-view wx:if="{{item.name=='div'||item.name=='p'||item.name=='table'}}" scroll-x scroll-y>
+    <rich-text nodes='{{[item]}}' space="{{item.name=='table'?false:space}}" />
+  </scroll-view>
   <!--图片-->
-  <image wx:if="{{item.name=='img'}}" src='{{item.attrs.src}}' mode='widthFix' lazy-load='{{lazyload}}' style="{{item.attrs.style+(item.attrs.width?(';width:'+item.attrs.width):'')+(item.attrs.height?('height:'+item.attrs.height):'')}}" data-ignore='{{item.attrs.ignore}}' data-src='{{item.attrs.src}}' bindtap='previewImg' />
+  <image wx:elif="{{item.name=='img'}}" src='{{item.attrs.src}}' mode='widthFix' lazy-load='{{lazyload}}' style="{{item.attrs.style+(item.attrs.width?(';width:'+item.attrs.width):'')+(item.attrs.height?('height:'+item.attrs.height):'')}}" data-ignore='{{item.attrs.ignore}}' data-src='{{item.attrs.src}}' bindtap='previewImg' />
+  <!--文本-->
+  <text wx:elif="{{item.type=='text'}}" space="{{space}}" decode>{{item.text}}</text>
+  <!--链接-->
+  <navigator wx:elif="{{item.name=='a'}}" style="{{'display:inline-block;'+item.attrs.style}}" url="{{item.attrs.href}}" data-href='{{item.attrs.href}}' hover-class="navigator-hover" bindtap="tapevent" bindlongpress='copyhref'>
+    <rich-text nodes='{{item.children}}' space='{{space}}'></rich-text>
+  </navigator>
   <!--视频-->
   <video wx:elif="{{item.name=='video'}}" src='{{item.attrs.src}}' loop='{{item.attrs.loop}}' controls='{{item.attrs.controls}}' style="{{item.attrs.style+(item.attrs.width?(';width:'+item.attrs.width):'')+(item.attrs.height?('height:'+item.attrs.height):'')}}" />
   <!--音频-->
   <audio wx:elif="{{item.name=='audio'}}" src='{{item.attrs.src}}' loop='{{item.attrs.loop}}' controls='{{item.attrs.controls}}' poster='{{item.attrs.poster}}' name='{{item.attrs.name}}' author='{{item.attrs.author}}' style="{{item.attrs.style}}" />
-  <!--链接-->
-  <navigator wx:elif="{{item.name=='a'}}" style="{{'display:inline-block;'+item.attrs.style}}" url="{{item.attrs.href}}" data-href='{{item.attrs.href}}' hover-class="navigator-hover" bindlongpress='copyhref'>
-    <rich-text nodes='{{item.children}}' space='{{space}}'></rich-text>
-  </navigator>
-  <!--纯文本-->
-  <text wx:elif="{{item.type=='text'}}" space='{{space}}'>{{item.text}}</text>
-  <!--富文本-->
-  <scroll-view wx:else scroll-x scroll-y>
-    <rich-text nodes='{{[item]}}' space="{{item.name=='table'?false:space}}" />
-  </scroll-view>
+  <!--其他-->
+  <rich-text wx:else class="{{item.name+'_rich'}}" nodes='{{[item]}}' space="{{space}}" />
 </template>
 <!--入口-->
 <template is='rich-text-floor1' data='{{nodes,space,lazyload}}' />
@@ -23,7 +25,7 @@
 <template name='rich-text-floor1'>
   <block wx:for='{{nodes}}' wx:key>
     <template wx:if="{{!item.continue}}" is='element' data='{{item,space,lazyload}}' />
-    <view wx:else style="{{item.attrs.style+(item.attrs.align?(';text-align:'+item.attrs.align):'')+(item.name==='strong'?';font-weight:bold':'')}}">
+    <view wx:else class="{{item.name}}" style="{{item.attrs.style}}">
       <template is='rich-text-floor2' data='{{nodes:item.children,space,lazyload}}' />
     </view>
   </block>
@@ -31,7 +33,7 @@
 <template name='rich-text-floor2'>
   <block wx:for='{{nodes}}' wx:key>
     <template wx:if="{{!item.continue}}" is='element' data='{{item,space,lazyload}}' />
-    <view wx:else style="{{item.attrs.style+(item.attrs.align?(';text-align:'+item.attrs.align):'')+(item.name==='strong'?';font-weight:bold':'')}}">
+    <view wx:else class="{{item.name}}" style="{{item.attrs.style}}">
       <template is='rich-text-floor3' data='{{nodes:item.children,space,lazyload}}' />
     </view>
   </block>
@@ -39,7 +41,7 @@
 <template name='rich-text-floor3'>
   <block wx:for='{{nodes}}' wx:key>
     <template wx:if="{{!item.continue}}" is='element' data='{{item,space,lazyload}}' />
-    <view wx:else style="{{item.attrs.style+(item.attrs.align?(';text-align:'+item.attrs.align):'')+(item.name==='strong'?';font-weight:bold':'')}}">
+    <view wx:else class="{{item.name}}" style="{{item.attrs.style}}">
       <template is='rich-text-floor4' data='{{nodes:item.children,space,lazyload}}' />
     </view>
   </block>
@@ -47,7 +49,7 @@
 <template name='rich-text-floor4'>
   <block wx:for='{{nodes}}' wx:key>
     <template wx:if="{{!item.continue}}" is='element' data='{{item,space,lazyload}}' />
-    <view wx:else style="{{item.attrs.style+(item.attrs.align?(';text-align:'+item.attrs.align):'')+(item.name==='strong'?';font-weight:bold':'')}}">
+    <view wx:else class="{{item.name}}" style="{{item.attrs.style}}">
       <template is='rich-text-floor5' data='{{nodes:item.children,space,lazyload}}' />
     </view>
   </block>
@@ -55,7 +57,7 @@
 <template name='rich-text-floor5'>
   <block wx:for='{{nodes}}' wx:key>
     <template wx:if="{{!item.continue}}" is='element' data='{{item,space,lazyload}}' />
-    <view wx:else style="{{item.attrs.style+(item.attrs.align?(';text-align:'+item.attrs.align):'')+(item.name==='strong'?';font-weight:bold':'')}}">
+    <view wx:else class="{{item.name}}" style="{{item.attrs.style}}">
       <template is='rich-text-floor6' data='{{nodes:item.children,space,lazyload}}' />
     </view>
   </block>
@@ -63,7 +65,7 @@
 <template name='rich-text-floor6'>
   <block wx:for='{{nodes}}' wx:key>
     <template wx:if="{{!item.continue}}" is='element' data='{{item,space,lazyload}}' />
-    <view wx:else style="{{item.attrs.style+(item.attrs.align?(';text-align:'+item.attrs.align):'')+(item.name==='strong'?';font-weight:bold':'')}}">
+    <view wx:else class="{{item.name}}" style="{{item.attrs.style}}">
       <template is='rich-text-floor7' data='{{nodes:item.children,space,lazyload}}' />
     </view>
   </block>
@@ -71,7 +73,7 @@
 <template name='rich-text-floor7'>
   <block wx:for='{{nodes}}' wx:key>
     <template wx:if="{{!item.continue}}" is='element' data='{{item,space,lazyload}}' />
-    <view wx:else style="{{item.attrs.style+(item.attrs.align?(';text-align:'+item.attrs.align):'')+(item.name==='strong'?';font-weight:bold':'')}}">
+    <view wx:else class="{{item.name}}" style="{{item.attrs.style}}">
       <template is='rich-text-floor8' data='{{nodes:item.children,space,lazyload}}' />
     </view>
   </block>
@@ -79,7 +81,7 @@
 <template name='rich-text-floor8'>
   <block wx:for='{{nodes}}' wx:key>
     <template wx:if="{{!item.continue}}" is='element' data='{{item,space,lazyload}}' />
-    <view wx:else style="{{item.attrs.style+(item.attrs.align?(';text-align:'+item.attrs.align):'')+(item.name==='strong'?';font-weight:bold':'')}}">
+    <view wx:else class="{{item.name}}" style="{{item.attrs.style}}">
       <template is='rich-text-floor9' data='{{nodes:item.children,space,lazyload}}' />
     </view>
   </block>
@@ -87,7 +89,7 @@
 <template name='rich-text-floor9'>
   <block wx:for='{{nodes}}' wx:key>
     <template wx:if="{{!item.continue}}" is='element' data='{{item,space,lazyload}}' />
-    <view wx:else style="{{item.attrs.style+(item.attrs.align?(';text-align:'+item.attrs.align):'')+(item.name==='strong'?';font-weight:bold':'')}}">
+    <view wx:else class="{{item.name}}" style="{{item.attrs.style}}">
       <template is='rich-text-floor10' data='{{nodes:item.children,space,lazyload}}' />
     </view>
   </block>
@@ -95,7 +97,7 @@
 <template name='rich-text-floor10'>
   <block wx:for='{{nodes}}' wx:key>
     <template wx:if="{{!item.continue}}" is='element' data='{{item,space,lazyload}}' />
-    <view wx:else style="{{item.attrs.style+(item.attrs.align?(';text-align:'+item.attrs.align):'')+(item.name==='strong'?';font-weight:bold':'')}}">
+    <view wx:else class="{{item.name}}" style="{{item.attrs.style}}">
       <template is='rich-text-floor11' data='{{nodes:item.children,space,lazyload}}' />
     </view>
   </block>
@@ -103,7 +105,7 @@
 <template name='rich-text-floor11'>
   <block wx:for='{{nodes}}' wx:key>
     <template wx:if="{{!item.continue}}" is='element' data='{{item,space,lazyload}}' />
-    <view wx:else style="{{item.attrs.style+(item.attrs.align?(';text-align:'+item.attrs.align):'')+(item.name==='strong'?';font-weight:bold':'')}}">
+    <view wx:else class="{{item.name}}" style="{{item.attrs.style}}">
       <template is='rich-text-floor12' data='{{nodes:item.children,space,lazyload}}' />
     </view>
   </block>
@@ -111,7 +113,7 @@
 <template name='rich-text-floor12'>
   <block wx:for='{{nodes}}' wx:key>
     <template wx:if="{{!item.continue}}" is='element' data='{{item,space,lazyload}}' />
-    <view wx:else style="{{item.attrs.style+(item.attrs.align?(';text-align:'+item.attrs.align):'')+(item.name==='strong'?';font-weight:bold':'')}}">
+    <view wx:else class="{{item.name}}" style="{{item.attrs.style}}">
       <template is='rich-text-floor13' data='{{nodes:item.children,space,lazyload}}' />
     </view>
   </block>
@@ -119,7 +121,7 @@
 <template name='rich-text-floor13'>
   <block wx:for='{{nodes}}' wx:key>
     <template wx:if="{{!item.continue}}" is='element' data='{{item,space,lazyload}}' />
-    <view wx:else style="{{item.attrs.style+(item.attrs.align?(';text-align:'+item.attrs.align):'')+(item.name==='strong'?';font-weight:bold':'')}}">
+    <view wx:else class="{{item.name}}" style="{{item.attrs.style}}">
       <template is='rich-text-floor14' data='{{nodes:item.children,space,lazyload}}' />
     </view>
   </block>
@@ -127,7 +129,7 @@
 <template name='rich-text-floor14'>
   <block wx:for='{{nodes}}' wx:key>
     <template wx:if="{{!item.continue}}" is='element' data='{{item,space,lazyload}}' />
-    <view wx:else style="{{item.attrs.style+(item.attrs.align?(';text-align:'+item.attrs.align):'')+(item.name==='strong'?';font-weight:bold':'')}}">
+    <view wx:else class="{{item.name}}" style="{{item.attrs.style}}">
       <template is='rich-text-floor15' data='{{nodes:item.children,space,lazyload}}' />
     </view>
   </block>
@@ -135,7 +137,7 @@
 <template name='rich-text-floor15'>
   <block wx:for='{{nodes}}' wx:key>
     <template wx:if="{{!item.continue}}" is='element' data='{{item,space,lazyload}}' />
-    <view wx:else style="{{item.attrs.style+(item.attrs.align?(';text-align:'+item.attrs.align):'')+(item.name==='strong'?';font-weight:bold':'')}}">
+    <view wx:else class="{{item.name}}" style="{{item.attrs.style}}">
       <template is='rich-text-floor16' data='{{nodes:item.children,space,lazyload}}' />
     </view>
   </block>
@@ -143,7 +145,7 @@
 <template name='rich-text-floor16'>
   <block wx:for='{{nodes}}' wx:key>
     <template wx:if="{{!item.continue}}" is='element' data='{{item,space,lazyload}}' />
-    <view wx:else style="{{item.attrs.style+(item.attrs.align?(';text-align:'+item.attrs.align):'')+(item.name==='strong'?';font-weight:bold':'')}}">
+    <view wx:else class="{{item.name}}" style="{{item.attrs.style}}">
       <template is='rich-text-floor17' data='{{nodes:item.children,space,lazyload}}' />
     </view>
   </block>
@@ -151,7 +153,7 @@
 <template name='rich-text-floor17'>
   <block wx:for='{{nodes}}' wx:key>
     <template wx:if="{{!item.continue}}" is='element' data='{{item,space,lazyload}}' />
-    <view wx:else style="{{item.attrs.style+(item.attrs.align?(';text-align:'+item.attrs.align):'')+(item.name==='strong'?';font-weight:bold':'')}}">
+    <view wx:else class="{{item.name}}" style="{{item.attrs.style}}">
       <template is='rich-text-floor18' data='{{nodes:item.children,space,lazyload}}' />
     </view>
   </block>
@@ -159,7 +161,7 @@
 <template name='rich-text-floor18'>
   <block wx:for='{{nodes}}' wx:key>
     <template wx:if="{{!item.continue}}" is='element' data='{{item,space,lazyload}}' />
-    <view wx:else style="{{item.attrs.style+(item.attrs.align?(';text-align:'+item.attrs.align):'')+(item.name==='strong'?';font-weight:bold':'')}}">
+    <view wx:else class="{{item.name}}" style="{{item.attrs.style}}">
       <template is='rich-text-floor19' data='{{nodes:item.children,space,lazyload}}' />
     </view>
   </block>
@@ -167,7 +169,7 @@
 <template name='rich-text-floor19'>
   <block wx:for='{{nodes}}' wx:key>
     <template wx:if="{{!item.continue}}" is='element' data='{{item,space,lazyload}}' />
-    <view wx:else style="{{item.attrs.style+(item.attrs.align?(';text-align:'+item.attrs.align):'')+(item.name==='strong'?';font-weight:bold':'')}}">
+    <view wx:else class="{{item.name}}" style="{{item.attrs.style}}">
       <template is='rich-text-floor20' data='{{nodes:item.children,space,lazyload}}' />
     </view>
   </block>

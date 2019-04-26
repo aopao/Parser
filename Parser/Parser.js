@@ -1,58 +1,31 @@
 //Parser.js
 var Tokenizer = require("./Tokenizer.js");
 var DomHandler = require("./DomHandler.js");
-var openImpliesClose = {
-  tr: {
-    tr: true,
-    th: true,
-    td: true
-  },
-  th: {
-    th: true
-  },
-  td: {
-    thead: true,
-    th: true,
-    td: true
-  },
-  body: {
-    head: true,
-    link: true,
-    script: true
-  },
-  li: {
-    li: true
-  },
-  p: {
-    p: true
-  },
-  h1: {
-    p: true
-  },
-  h2: {
-    p: true
-  },
-  h3: {
-    p: true
-  },
-  h4: {
-    p: true
-  },
-  h5: {
-    p: true
-  },
-  h6: {
-    p: true
-  },
-  option: {
-    option: true
-  },
-  optgroup: {
-    optgroup: true
-  }
-};
-var voidElements = {
-  __proto__: null,
+var trustAttrs = {
+  align: true,
+  alt: true,
+  author: true,
+  class: true,
+  color: true,
+  colspan: true,
+  controls: true,
+  face: true,
+  height: true,
+  href: true,
+  id: true,
+  ignore: true,
+  loop: true,
+  name: true,
+  poster: true,
+  rowspan: true,
+  span: true,
+  src: true,
+  start: true,
+  style: true,
+  type: true,
+  width: true,
+}
+var voidTag = {
   area: true,
   base: true,
   basefont: true,
@@ -63,8 +36,6 @@ var voidElements = {
   frame: true,
   hr: true,
   img: true,
-  audio: true,
-  video: true,
   input: true,
   isindex: true,
   keygen: true,
@@ -84,6 +55,7 @@ var voidElements = {
   polyline: true,
   polygon: true
 };
+
 function Parser(cbs, callback) {
   this._cbs = cbs;
   this._callback = callback;
@@ -92,50 +64,30 @@ function Parser(cbs, callback) {
   this._attribvalue = "";
   this._attribs = null;
   this._stack = [];
-  this.startIndex = 0;
-  this.endIndex = null;
   this._tokenizer = new Tokenizer(this);
 }
-Parser.prototype._updatePosition = function(initialOffset) {
-  if (this.endIndex === null) {
-    if (this._tokenizer._sectionStart <= initialOffset) {
-      this.startIndex = 0;
-    } else {
-      this.startIndex = this._tokenizer._sectionStart - initialOffset;
-    }
-  } else this.startIndex = this.endIndex + 1;
-  this.endIndex = this._tokenizer.getAbsoluteIndex();
-};
 Parser.prototype.ontext = function(data) {
-  this._updatePosition(1);
-  this.endIndex--;
   this._cbs.ontext(data);
 };
 Parser.prototype.onopentagname = function(name) {
+  name = name.toLowerCase();
   this._tagname = name;
-  this._attribs = {};
-  if (name in openImpliesClose) {
-    for (
-      var el;
-      (el = this._stack[this._stack.length - 1]) in openImpliesClose[name]; this.onclosetag(el)
-    );
-  }
-  if (!(name in voidElements)) this._stack.push(name);
+  this._attribs = {
+    style: ''
+  };
+  if (!voidTag[name]) this._stack.push(name);
 };
 Parser.prototype.onopentagend = function() {
-  this._updatePosition(1);
   if (this._attribs) {
     this._cbs.onopentag(this._tagname, this._attribs);
     this._attribs = null;
   }
-  if (this._tagname in voidElements) {
-    this._cbs.onclosetag(this._tagname);
-  }
+  if (voidTag[this._tagname]) this._cbs.onclosetag(this._tagname);
   this._tagname = "";
 };
 Parser.prototype.onclosetag = function(name) {
-  this._updatePosition(1);
-  if (this._stack.length && !(name in voidElements)) {
+  name = name.toLowerCase();
+  if (this._stack.length && !voidTag[name]) {
     var pos = this._stack.lastIndexOf(name);
     if (pos !== -1) {
       pos = this._stack.length - pos;
@@ -164,17 +116,12 @@ Parser.prototype.onattribdata = function(value) {
   this._attribvalue += value;
 };
 Parser.prototype.onattribend = function() {
-  if (
-    this._attribs &&
-    !Object.prototype.hasOwnProperty.call(this._attribs, this._attribname)
-  ) {
+  this._attribname = this._attribname.toLowerCase();
+  if (this._attribs && trustAttrs[this._attribname]) {
     this._attribs[this._attribname] = this._attribvalue;
   }
   this._attribname = "";
   this._attribvalue = "";
-};
-Parser.prototype.onerror = function(err) {
-  console.error(err);
 };
 Parser.prototype.onend = function() {
   for (
@@ -185,26 +132,22 @@ Parser.prototype.onend = function() {
     'imgList': this._cbs.imgList
   });
 };
-Parser.prototype.end = function(chunk) {
-  this._tokenizer.end(chunk);
+Parser.prototype.write = function(chunk) {
+  this._tokenizer.parse(chunk);
 };
-function html2nodes(data, options) {
+
+function html2nodes(data, tagStyle) {
   return new Promise(function(resolve, reject) {
-    data = data.replace(/(^\s*)|(\s*$)/g,''); //删除开头结尾的空格
-    data = data.replace(/>\s*?</g, '><'); //标签间的删除空格
-    data = data.replace(/<!--[\s\S]*?-->/g, ''); //删除注释
-    data = data.replace(/<!\[CDATA\[[\s\S]*?\]\]>/gi, ''); //删除CDATA
-    data = data.replace(/<script[\s\S]*?<\/script>/gi, ''); //删除脚本
     var style = '';
     data = data.replace(/<style.*?>([\s\S]*?)<\/style>/gi, function() {
       style += arguments[1];
       return '';
-    }); //处理style
-    data = data.replace(/<head[\s\S]*?<\/head>/gi, ''); //删除head
-    var handler = new DomHandler(style, options);
+    });
+    style=style.toLowerCase();
+    var handler = new DomHandler(style, tagStyle);
     new Parser(handler, function(res) {
-      resolve(res)
-    }).end(data);
+      resolve(res);
+    }).write(data);
   })
 }
 module.exports = html2nodes;

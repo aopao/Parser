@@ -5,19 +5,15 @@ Component({
     'html': {
       type: null,
       value: '',
-      observer: function (html) {
-        if(!html){
+      observer: function(html) {
+        if (!html) {
           this.setData({
-            nodes:[]
+            nodes: []
           })
-        }
-        else if (typeof html == 'string') {
+        } else if (typeof html == 'string') {
           var that = this;
-          html2nodes(html, {
-            tagStyle: this.data.tagStyle,
-            preview: this.data.preview,
-            selectable: this.data.selectable
-          }).then(function (e) {
+          html2nodes(html, this.data.tagStyle).then(function(e) {
+            var parseok = new Date().getTime();
             that.triggerEvent('parse', e)
             imgList = e.imgList;
             that.setData({
@@ -26,53 +22,46 @@ Component({
           });
         } else if (html.constructor == Array) {
           imgList = [];
-          this.setData({
+          that.setData({
             nodes: html
           })
         } else if (typeof html == 'object') {
           imgList = html.imgList;
-          this.setData({
+          that.setData({
             nodes: html.nodes
           })
         }
       }
     },
-    'tagStyle':{
-      type:Object,
-      value:{}
+    'tagStyle': {
+      type: Object,
+      value: {}
     },
     'space': {
-      type: String,
-      value: 'nbsp'
+      type: null,
+      value: false
     },
-    'selectable': {
-      type: Boolean,
-      value: true
-    },
-    'preview': {
-      type: Boolean,
-      value: true
-    },
-    'lazyload':{
+    'lazyload': {
       type: Boolean,
       value: false
     }
   },
   methods: {
+    tapevent(e) {
+      this.triggerEvent('linkpress', e.currentTarget.dataset.href)
+    },
     copyhref(e) {
-      if (this.data.selectable) {
-        wx.setClipboardData({
-          data: e.currentTarget.dataset.href,
-          success:function(res){
-            wx.showToast({
-              title: '链接已复制',
-            })
-          }
-        })
-      }
+      wx.setClipboardData({
+        data: e.currentTarget.dataset.href,
+        success: function(res) {
+          wx.showToast({
+            title: '内容已复制',
+          })
+        }
+      })
     },
     previewImg(e) {
-      if (this.data.preview && !e.target.dataset.hasOwnProperty('ignore')) {
+      if (!e.target.dataset.hasOwnProperty('ignore')) {
         wx.previewImage({
           current: e.target.dataset.src,
           urls: imgList.length ? imgList : [e.target.dataset.src],
