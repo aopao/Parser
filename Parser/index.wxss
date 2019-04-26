@@ -2,7 +2,7 @@
   opacity: 0.7;
   text-decoration: underline;
 }
-.b_rich, .strong_rich, .del_rich, .ins_rich, .em_rich, .i_rich, .sub_rich, .sup_rich, .q_rich, .span_rich {
+.b_rich, .strong_rich, .del_rich, .ins_rich, .em_rich, .i_rich, .sub_rich, .sup_rich, .q_rich, .span_rich, .code_rich, .label_rich {
   display: inline-block;
 }
 .b, .strong {

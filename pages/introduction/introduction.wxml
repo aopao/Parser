@@ -81,6 +81,7 @@
           <text style="color:#6a737d">{{tagString}}</text>
           <text decode>"/&gt;</text>
         </view>
+        <text>解析结果：</text>
         <Parser html="<code>test</code>" tagStyle="{{tagStyle}}" />
       </view>
       <view class="weui-article__h1">解析实体编码</view>

@@ -62,6 +62,7 @@ var ignoreTag = {
   iframe: true,
   frame: true,
   input: true,
+  textarea: true,
   isindex: true,
   keygen: true,
   link: true,
