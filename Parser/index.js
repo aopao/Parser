@@ -21,12 +21,12 @@ Component({
           });
         } else if (html.constructor == Array) {
           imgList = [];
-          that.setData({
+          this.setData({
             nodes: html
           })
         } else if (typeof html == 'object') {
           imgList = html.imgList;
-          that.setData({
+          this.setData({
             nodes: html.nodes
           })
         }
