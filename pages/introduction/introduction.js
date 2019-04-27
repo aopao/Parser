@@ -20,7 +20,7 @@ Page({
     }],
     table: [{
       name: 'table',
-      attrs: 'width, align'
+      attrs: 'width'
     }, {
       name: 'thead'
     }, {

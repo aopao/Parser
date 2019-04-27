@@ -1,4 +1,4 @@
-const html2nodes = require('./Parser.js')
+const html2nodes = require('./Parser.js');
 var imgList = [];
 Component({
   properties: {
@@ -13,7 +13,7 @@ Component({
         } else if (typeof html == 'string') {
           var that = this;
           html2nodes(html, this.data.tagStyle).then(function(e) {
-            that.triggerEvent('parse', e)
+            that.triggerEvent('parse', e);
             imgList = e.imgList;
             that.setData({
               nodes: e.nodes
@@ -32,28 +32,34 @@ Component({
         }
       }
     },
-    'tagStyle': {
-      type: Object,
-      value: {}
+    'selectable': {
+      type: Boolean,
+      value:true
     },
     'lazyload': {
       type: Boolean,
       value: false
-    }
+    },
+    'tagStyle': {
+      type: Object,
+      value: {}
+    },
   },
   methods: {
     tapevent(e) {
       this.triggerEvent('linkpress', e.currentTarget.dataset.href)
     },
     copyhref(e) {
-      wx.setClipboardData({
-        data: e.currentTarget.dataset.href,
-        success: function(res) {
-          wx.showToast({
-            title: '内容已复制',
-          })
-        }
-      })
+      if (this.data.selectable) {
+        wx.setClipboardData({
+          data: e.currentTarget.dataset.href,
+          success: function (res) {
+            wx.showToast({
+              title: '内容已复制',
+            })
+          }
+        })
+      }
     },
     previewImg(e) {
       if (!e.target.dataset.hasOwnProperty('ignore')) {

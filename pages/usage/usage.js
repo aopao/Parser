@@ -10,6 +10,11 @@ Page({
       name: 'html',
       type: 'String\nArray\nObject',
       notice: '见下方说明'
+    },{
+      name: 'selectable',
+      type: 'Boolean',
+      default: 'true',
+      notice: '是否允许链接长按复制'
     }, {
       name: 'lazyload',
       type: 'Boolean',
@@ -41,8 +46,8 @@ Page({
         <li><code>A</code> 增加<code>bindlinkpress</code>回调函数，在链接受到点击时触发，开发者可以在此回调中进行进一步操作（如下载和打开文档等）</li>
         <li><code>A</code> 增加支持代码高亮显示</li>
         <li><code>U</code> 对于不在支持列表中的标签，除个别直接移除外，都会被转为<code>div</code>标签，因此可以使用一些语义化标签，如<code>article</code>, <code>address</code>等</li>
-        <li><code>U</code> 精简包的大小至<code>28KB</code>，提高了解析效率和渲染效率（约10%）</li>
-        <li><code>D</code> 删除了<code>preview</code>, <code>selectable</code>属性，默认允许图片预览和链接点击</li>
+        <li><code>U</code> 提高了解析效率和渲染效率（约10%）</li>
+        <li><code>D</code> 删除了<code>preview</code>，默认允许图片预览</li>
         <li><code>D</code> 删除了<code>space</code>属性，由于设置连续空格会使得标签间的空格都被显示，导致错误的效果，因此取消了这一属性；如需要显示连续空格，请使用实体编码的空格，如<code>&amp;ensp;</code>, <code>&amp;emsp;</code>等
         <li><code>F</code> 修复了已知<code>bug</code></li>
       </ol>
@@ -68,7 +73,7 @@ Page({
     <br />
     <li>2019.4.16:
       <ol>
-        <li><code>U</code> 精简包的大小至<code>33KB</code></li>
+        <li><code>U</code> 精简包的大小</li>
         <li><code>F</code> 修复了已知<code>bug</code></li>
       </ol>
     </li>

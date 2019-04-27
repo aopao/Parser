@@ -211,7 +211,7 @@ Tokenizer.prototype.InCDATA = function(c) {
 Tokenizer.prototype.parse = function(chunk) {
   this._buffer += chunk;
   while (this._index < this._buffer.length) {
-    this[this._state](this._buffer.charAt(this._index))
+    this[this._state](this._buffer.charAt(this._index));
     this._index++;
   }
   if (this._state === "TEXT" && this._sectionStart !== this._index)

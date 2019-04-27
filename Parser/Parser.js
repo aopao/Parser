@@ -25,7 +25,7 @@ var trustAttrs = {
   style: true,
   type: true,
   width: true,
-}
+};
 var voidTag = {
   area: true,
   base: true,
@@ -88,7 +88,7 @@ Parser.prototype.onopentagend = function() {
           var index = this._tokenizer._buffer.indexOf("</pre>", this._tokenizer._index);
           if (index == -1) index = this._tokenizer._buffer.length;
           var content = this._tokenizer._buffer.substring(this._tokenizer._index + 1, index);
-          var html = Prism.highlight(content, Prism.languages[this._attribs.language], this._attribs.language)
+          var html = Prism.highlight(content, Prism.languages[this._attribs.language], this._attribs.language);
           html = html.replace(/\n/g, '<br />');
           this._tokenizer._buffer = this._tokenizer._buffer.replace(content, html);
         }

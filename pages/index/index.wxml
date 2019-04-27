@@ -12,12 +12,12 @@
           <image class="kind-list__img" src="../../images/introduction.png"></image>
         </view>
       </navigator>
-      <navigator url="../demo/demo" class="kind-list__item">
+      <view bindtap='seedemo' class="kind-list__item">
         <view class="weui-flex kind-list__item-hd">
           <view class="weui-flex__item">示例页面</view>
           <image class="kind-list__img" src="../../images/demo.png"></image>
         </view>
-      </navigator>
+      </view>
       <navigator url="../test/test" class="kind-list__item">
         <view class="weui-flex kind-list__item-hd">
           <view class="weui-flex__item">自定义测试</view>

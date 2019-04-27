@@ -51,7 +51,17 @@ var trustTag = {
   u: Common,
   ul: Rich,
   video: Common
-}
+};
+var textTag = {
+  b: true,
+  del: true, 
+  em: true,
+  i: true,
+  ins: true,
+  q: true,
+  span: true,
+  strong: true
+};
 var ignoreTag = {
   head: true,
   area: true,
@@ -81,7 +91,7 @@ var ignoreTag = {
   polygon: true,
   map: true,
   canvas: true,
-}
+};
 
 function DomHandler(style, tagStyle) {
   this.imgList = [];
@@ -120,10 +130,14 @@ DomHandler.prototype._addDomElement = function(element) {
 };
 DomHandler.prototype.onopentag = function(name, attrs) {
   if (ignoreTag[name]) return;
+  var element = {
+    children: []
+  };
   if (this._style[name]) attrs.style += (';' + this._style[name]);
   if (this._style['.' + attrs.class]) attrs.style += (';' + this._style['.' + attrs.class]);
   if (this._style['#' + attrs.id]) attrs.style += (';' + this._style['#' + attrs.id]);
   if (!trustTag[name]) name = 'div';
+  if (textTag[name]) element.continue = true;
   switch (name) {
     case 'div': case 'p':
       if (attrs.align){
@@ -133,9 +147,13 @@ DomHandler.prototype.onopentag = function(name, attrs) {
       break;
     case 'img':
       if (!attrs.hasOwnProperty('ignore')) {
-        this.imgList.push(attrs.src)
+        this.imgList.push(attrs.src);
         for (var item of this._tagStack) {
           if (trustTag[item.name] == Common) item.continue = true;
+          else {
+            if (item.name == 'a') attrs.ignore = true;
+            break;
+          }
         }
       };
       attrs.style = 'max-width:100%;' + attrs.style;
@@ -152,25 +170,19 @@ DomHandler.prototype.onopentag = function(name, attrs) {
       }
       break;
     case 'a':
+      element.continue=true;
       for (var item of this._tagStack) {
         if (trustTag[item.name] == Common) item.continue = true;
+        else break;
       }
-      attrs.style = 'color:#366092;' + attrs.style;
-      break;
-    case 'table':
-      if (attrs.align) {
-        attrs.style += (';text-align:' + attrs.align);
-        delete attrs.align;
-      }
-      for (var item of this._tagStack) {
-        if (trustTag[item.name] == Common) item.continue = true;
-      }
+      attrs.style = 'color:#366092;display:inline;word-break:break-all;overflow:auto;' + attrs.style;
       break;
     case 'video': case 'audio':
       attrs.loop = attrs.hasOwnProperty('loop');
       attrs.controls = attrs.hasOwnProperty('controls');
       for (var item of this._tagStack) {
         if (trustTag[item.name] == Common) item.continue = true;
+        else break;
       }
       break;
     case 'source':
@@ -185,6 +197,7 @@ DomHandler.prototype.onopentag = function(name, attrs) {
       attrs.style = 'background-color:#f6f8fa;padding:5px;margin:5px 0 5px 0;border-radius:5px;font-family:monospace;white-space: pre-line;' + attrs.style;
       for (var item of this._tagStack) {
         if (trustTag[item.name] == Common) item.continue = true;
+        else break;
       }
       break;
     case 'u':
@@ -192,11 +205,8 @@ DomHandler.prototype.onopentag = function(name, attrs) {
       attrs.style = 'text-decoration:underline;' + attrs.style;
       break;
   }
-  var element = {
-    name: name,
-    attrs: attrs,
-    children: []
-  };
+  element.name=name;
+  element.attrs=attrs;
   this._addDomElement(element);
   this._tagStack.push(element);
 };
@@ -217,6 +227,11 @@ DomHandler.prototype.ontext = function(data) {
         text: data,
         type: 'text'
       };
+      if(/&#.{2,5};/.test(data)){
+        element.decode=true;
+        var parent=this._tagStack[this._tagStack.length-1];
+        if(parent&&parent.continue) delete parent.continue;
+      }
       this._addDomElement(element);
     }
   }

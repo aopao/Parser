@@ -1,7 +1,5 @@
 // pages/demo/demo.js
-Page({
-  data: {
-    html: `<style>
+var html0 = `<style>
   body {
     margin-left:3%;
     margin-right:3%;
@@ -394,10 +392,358 @@ Page({
       <td>🙅</td><td>🙆</td><td>👫</td><td>👪</td>
     </tr>
   </table>
-</body>`
+</body>`;
+var html1 = `<section data-id="94645" data-tools="135编辑器" class="_135editor">
+  <section style="width: 100%;">
+    <section style="width: 100%;background: #ecfef1;color:#27bc71;">
+      <section class="_135editor" style="border: 0px none;">
+        <section style="width: 100%;" class="135brush">
+          <img style="width: 100%;display: block;" ignore src="http://bmob-cdn-17111.b0.upaiyun.com/2019/04/27/205370b74026a8aa80bcabf4831aee99.gif" />
+        </section>
+      </section>
+      <section class="_135editor" style="border: 0px none;">
+        <section style="padding: 2em 0px 4em 0px;">
+          <section style="display: flex;justify-content: center;color:#27bc71;">
+            <section style="height: 3em;border-left:1px solid #27bc71;margin-right: 1em;margin-top:8em;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);-o-transform: rotate(45deg);"></section>
+            <section class="135brush" data-brushtype="text" style="writing-mode:tb-rl;font-size: 35px;font-weight: bold;width:40px;letter-spacing:2px;margin-right: -30px;">
+              负
+            </section>
+            <section class="135brush" data-brushtype="text" style="writing-mode:tb-rl;font-size: 18px;letter-spacing:2px;margin-top: 40px;width:20px;">
+              春暖花开 万物复苏
+            </section>
+            <section class="135brush" data-brushtype="text" style="writing-mode:tb-rl;font-size: 35px;font-weight: bold;margin-top: -1em;margin-left:-10px;width:40px;">
+              不
+            </section>
+            <section class="135brush" data-brushtype="text" style="writing-mode:tb-rl;font-size: 35px;font-size:20px;width:20px;margin-top:15px;margin-left: -1em;">
+              好
+            </section>
+            <section class="135brush" data-brushtype="text" style="writing-mode:tb-rl;font-size: 35px;font-weight: bold;margin-left:-20px; margin-top:40px;letter-spacing:2px;width:40px;">
+              春光
+            </section>
+            <section style="width: 1px;height:2.6em;border-left:1px solid #27bc71;margin-left:0.3em;margin-top: -1.8em;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);-o-transform: rotate(45deg);"></section>
+            <section style="width: 1px;height:2em;border-left:1px solid #27bc71;margin-top:4em;margin-left:0.1em;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);-o-transform: rotate(45deg);"></section>
+          </section>
+        </section>
+      </section>
+      <section class="_135editor" style="border: 0px none;">
+        <section style="width: 100%;background: url(http://bmob-cdn-17111.b0.upaiyun.com/2019/04/27/22a555e240b4959c800361864b062980.png)no-repeat;background-position:top ;background-size:100%;padding: 4em 0px 1em 0px;">
+          <section style="text-align: center;">
+            <section style="display: inline-block;background: #27bc71;border-radius:8px;color: #fff;">
+              <section style="display: flex;justify-content: center;padding: 5px 0em;">
+                <section style="width: 20px;">
+                  <img style="width: 100%;display: block;margin-top:12px;" ignore src="http://bmob-cdn-17111.b0.upaiyun.com/2019/04/27/761efe0440ac78e68047bbdbd67ea829.png" />
+                </section>
+                <section class="135brush" data-brushtype="text" style="text-align: center;font-size: 18px;font-weight: bold;padding: 0px 10px;letter-spacing: 2px;">
+                  春天来啦
+                </section>
+                <section style="width: 25px;margin-top: -10px;margin-right: -6px;">
+                  <img style="width: 100%;display: block;" ignore src="http://bmob-cdn-17111.b0.upaiyun.com/2019/04/27/2d54163040c4fa6680346968ee918c36.png" />
+                </section>
+              </section>
+            </section>
+          </section>
+        </section>
+      </section>
+      <section class="_135editor" style="border: 0px none;">
+        <section data-autoskip="1" class="135brush" style="width: 100%;font-size: 14px;text-align:center;letter-spacing: 1.5px;color:#27bc71;">
+          <p>
+            成都的三月花团锦簇
+          </p>
+          <p>
+            在接下来一个月里
+          </p>
+          <p>
+            油菜花、梨花、桃花、
+          </p>
+          <p>
+            樱桃花、杏花、郁金香等
+          </p>
+          <p>
+            花朵将竞相开放
+          </p>
+          <p>
+            为爱耍的成都人
+          </p>
+          <p>
+            提供了不少春游赏花、踏青的好去处
+          </p>
+          <p>
+            同学们自然也不会错过缤纷的季节
+          </p>
+        </section>
+      </section>
+      <section class="_135editor" style="border: 0px none;">
+        <section style="width: 100%;background: url(http://bmob-cdn-17111.b0.upaiyun.com/2019/04/27/5c73c648405b0af780959fcbbe0a1663.png)no-repeat;background-position:left ;background-size:30px;">
+          <section style="text-align: center;padding:2em 0px;">
+            <section style="display: inline-block;background: #27bc71;border-radius:8px;color: #fff;">
+              <section style="display: flex;justify-content: center;padding: 5px 0em;">
+                <section style="width: 20px;">
+                  <img style="width: 100%;display: block;margin-top:12px;" ignore src="http://bmob-cdn-17111.b0.upaiyun.com/2019/04/27/761efe0440ac78e68047bbdbd67ea829.png" />
+                </section>
+                <section style="text-align: center;font-size: 18px;font-weight: bold;padding: 0px 10px;letter-spacing: 2px;">
+                  踏青攻略
+                </section>
+                <section style="width: 25px;margin-top: -10px;margin-right: -6px;">
+                  <img style="width: 100%;display: block;" ignore src="http://bmob-cdn-17111.b0.upaiyun.com/2019/04/27/2d54163040c4fa6680346968ee918c36.png" />
+                </section>
+              </section>
+            </section>
+          </section>
+        </section>
+      </section>
+      <section class="_135editor" style="border: 0px none;margin: 20px auto 0px auto;">
+        <section style="background: url(http://bmob-cdn-17111.b0.upaiyun.com/2019/04/27/dd12edb3400b842280b18efa9b1f5448.png)no-repeat;background-position:right ;background-size:30px ;padding-bottom:50px;">
+          <section class="135brush" data-brushtype="text" style="text-align: center;font-size: 18px;font-weight: bold;letter-spacing: 2px;">
+            芦山油菜花海春意闹
+          </section>
+        </section>
+      </section>
+      <section class="_135editor" style="border: 0px none;margin-top: -60px;">
+        <section style="padding: 1em;">
+          <section style="width: 100%;background: url(http://bmob-cdn-17111.b0.upaiyun.com/2019/04/27/7ab786e74080c125806db1aad3b1a6b7.png)no-repeat;background-position:top ;background-size:100%;">
+            <img style="width: 100%;display: block;opacity: 0;" ignore src="http://bmob-cdn-17111.b0.upaiyun.com/2019/04/27/7ab786e74080c125806db1aad3b1a6b7.png" />
+          </section>
+          <section style="width: 100%;background: url(http://bmob-cdn-17111.b0.upaiyun.com/2019/04/27/99a6ea6c402bc4828066cc7bf0d85877.png)repeat-y;background-position:top ;background-size:100%;">
+            <section style="padding:10px;">
+              <section style="margin-top: -3em;">
+                <section style="width: 30px;">
+                  <img style="width: 100%;display: block;margin-top: 12px;" ignore src="http://bmob-cdn-17111.b0.upaiyun.com/2019/04/27/761efe0440ac78e68047bbdbd67ea829.png" />
+                </section>
+                <section style="width: 35px;float: right;">
+                  <img style="width: 100%;display: block;margin-bottom:-20px;" ignore src="http://bmob-cdn-17111.b0.upaiyun.com/2019/04/27/2d54163040c4fa6680346968ee918c36.png" />
+                </section>
+              </section>
+              <section style="clear: both;"></section>
+              <section style="background: rgb(254,254,254);border-radius:10px;padding:30px 30px 10px 30px;">
+                <section>
+                  <section style="width:2em;height:2em;background: #f0f187;opacity: 0.6;float: right;margin-bottom: -1.5em;margin-right:-8px;"></section>
+                  <section style="width: 100%;clear: both;-webkit-box-shadow:0px 2px 6px #c4c4c3;transform: rotate(0deg);-webkit-transform: rotate(0deg);-moz-transform: rotate(0deg);-o-transform: rotate(0deg);">
+                    <img style="width: 100%;display: block;" src="http://bmob-cdn-17111.b0.upaiyun.com/2019/04/27/74231a2c4022ad548076ef86e0416bfd.jpg" />
+                  </section>
+                  <section style="width:2em;height:2em;background: #c4f9d2;margin-top: -1.5em;margin-left:-8px;"></section>
+                </section>
+                <section data-autoskip="1" class="135brush" style="width: 100%;font-size: 14px;text-align:justify;letter-spacing: 1.5px;color:#27bc71;padding: 1em 0px;">
+                  <p>
+                    赏花佳期：3月初—4月下旬
+                  </p>
+                  <p>
+                    “立体多层，起伏跌宕”是芦山独特的地貌油菜花景观,立体感的油菜花山区别于平原地区平面式的油菜花海，与奇特秀丽的自然景观和多姿多彩的民族风情相辉映，构成了芦山春天的一道靓丽的风景线。
+                  </p>
+                </section>
+              </section>
+            </section>
+          </section>
+          <section style="background: url(http://bmob-cdn-17111.b0.upaiyun.com/2019/04/27/4bf3189c40afe1a48067a41e310c534f.png)no-repeat;">
+            <img style="width: 100%;display: block;" ignore src="http://bmob-cdn-17111.b0.upaiyun.com/2019/04/27/4bf3189c40afe1a48067a41e310c534f.png" />
+          </section>
+        </section>
+      </section>
+      <section class="_135editor" style="border: 0px none;margin: 20px auto 0px auto;">
+        <section style="background: url(http://bmob-cdn-17111.b0.upaiyun.com/2019/04/27/dd12edb3400b842280b18efa9b1f5448.png)no-repeat;background-position:right ;background-size:30px ;padding-bottom:50px;">
+          <section class="135brush" data-brushtype="text" style="text-align: center;font-size: 18px;font-weight: bold;letter-spacing: 2px;">
+            龙泉驿国际桃花节
+          </section>
+        </section>
+      </section>
+      <section class="_135editor" style="border: 0px none;margin-top: -60px;">
+        <section style="padding: 1em;">
+          <section style="width: 100%;background: url(http://bmob-cdn-17111.b0.upaiyun.com/2019/04/27/7ab786e74080c125806db1aad3b1a6b7.png)no-repeat;background-position:top ;background-size:100%;">
+            <img style="width: 100%;display: block;opacity: 0;" ignore src="http://bmob-cdn-17111.b0.upaiyun.com/2019/04/27/7ab786e74080c125806db1aad3b1a6b7.png" />
+          </section>
+          <section style="width: 100%;background: url(http://bmob-cdn-17111.b0.upaiyun.com/2019/04/27/99a6ea6c402bc4828066cc7bf0d85877.png)repeat-y;background-position:top ;background-size:100%;">
+            <section style="padding:10px;">
+              <section style="margin-top: -3em;">
+                <section style="width: 30px;">
+                  <img style="width: 100%;display: block;margin-top: 12px;" ignore src="http://bmob-cdn-17111.b0.upaiyun.com/2019/04/27/761efe0440ac78e68047bbdbd67ea829.png" />
+                </section>
+                <section style="width: 35px;float: right;">
+                  <img style="width: 100%;display: block;margin-bottom:-20px;" ignore src="http://bmob-cdn-17111.b0.upaiyun.com/2019/04/27/2d54163040c4fa6680346968ee918c36.png" />
+                </section>
+              </section>
+              <section style="clear: both;"></section>
+              <section style="background: rgb(254,254,254);border-radius:10px;padding:30px 30px 10px 30px;">
+                <section>
+                  <section style="width:2em;height:2em;background: #f0f187;opacity: 0.6;float: right;margin-bottom: -1.5em;margin-right:-8px;"></section>
+                  <section style="width: 100%;clear: both;-webkit-box-shadow:0px 2px 6px #c4c4c3;transform: rotate(0deg);-webkit-transform: rotate(0deg);-moz-transform: rotate(0deg);-o-transform: rotate(0deg);">
+                    <img style="width: 100%;display: block;" src="http://bmob-cdn-17111.b0.upaiyun.com/2019/04/27/d6140af6404d656880ecac7223739e2d.jpg" />
+                  </section>
+                  <section style="width:2em;height:2em;background: #c4f9d2;margin-top: -1.5em;margin-left:-8px;"></section>
+                </section>
+                <section data-autoskip="1" class="135brush" style="width: 100%;font-size: 14px;text-align:justify;letter-spacing: 1.5px;color:#27bc71;padding: 1em 0px;">
+                  <p>
+                    赏花佳期：3月初—4月中旬
+                  </p>
+                  <p>
+                    每年三月桃花开，书房村、山泉乡、三元村、桃花沟、天鹅岭等处游客如云。碰上周末,更是人山人海，像赶“桃花集”，每天来赶集的人都有几万。
+                  </p>
+                </section>
+              </section>
+            </section>
+          </section>
+          <section style="background: url(http://bmob-cdn-17111.b0.upaiyun.com/2019/04/27/4bf3189c40afe1a48067a41e310c534f.png)no-repeat;">
+            <img style="width: 100%;display: block;" ignore src="http://bmob-cdn-17111.b0.upaiyun.com/2019/04/27/4bf3189c40afe1a48067a41e310c534f.png" />
+          </section>
+        </section>
+      </section>
+      <section class="_135editor" style="border: 0px none;margin: 20px auto 0px auto;">
+        <section style="background: url(http://bmob-cdn-17111.b0.upaiyun.com/2019/04/27/5c73c648405b0af780959fcbbe0a1663.png)no-repeat;background-position:left ;background-size:30px;padding-bottom:50px;">
+          <section class="135brush" data-brushtype="text" style="text-align: center;font-size: 18px;font-weight: bold;letter-spacing: 2px;">
+            新津万亩梨园似雪原
+          </section>
+        </section>
+      </section>
+      <section class="_135editor" style="border: 0px none;margin-top: -60px;">
+        <section style="padding: 1em;">
+          <section style="width: 100%;background: url(http://bmob-cdn-17111.b0.upaiyun.com/2019/04/27/7ab786e74080c125806db1aad3b1a6b7.png)no-repeat;background-position:top ;background-size:100%;">
+            <img style="width: 100%;display: block;opacity: 0;" ignore src="http://bmob-cdn-17111.b0.upaiyun.com/2019/04/27/7ab786e74080c125806db1aad3b1a6b7.png" />
+          </section>
+          <section style="width: 100%;background: url(http://bmob-cdn-17111.b0.upaiyun.com/2019/04/27/99a6ea6c402bc4828066cc7bf0d85877.png)repeat-y;background-position:top ;background-size:100%;">
+            <section style="padding:10px;">
+              <section style="margin-top: -3em;">
+                <section style="width: 30px;">
+                  <img style="width: 100%;display: block;margin-top: 12px;" ignore src="http://bmob-cdn-17111.b0.upaiyun.com/2019/04/27/761efe0440ac78e68047bbdbd67ea829.png" />
+                </section>
+                <section style="width: 35px;float: right;">
+                  <img style="width: 100%;display: block;margin-bottom:-20px;" ignore src="http://bmob-cdn-17111.b0.upaiyun.com/2019/04/27/2d54163040c4fa6680346968ee918c36.png" />
+                </section>
+              </section>
+              <section style="clear: both;"></section>
+              <section style="background: rgb(254,254,254);border-radius:10px;padding:30px 30px 10px 30px;">
+                <section>
+                  <section style="width:2em;height:2em;background: #f0f187;opacity: 0.6;float: right;margin-bottom: -1.5em;margin-right:-8px;"></section>
+                  <section style="width: 100%;clear: both;-webkit-box-shadow:0px 2px 6px #c4c4c3;transform: rotate(0deg);-webkit-transform: rotate(0deg);-moz-transform: rotate(0deg);-o-transform: rotate(0deg);">
+                    <img style="width: 100%;display: block;" src="http://bmob-cdn-17111.b0.upaiyun.com/2019/04/27/aa872dbf40add3f58061f16788cf4a15.jpg" />
+                  </section>
+                  <section style="width:2em;height:2em;background: #c4f9d2;margin-top: -1.5em;margin-left:-8px;"></section>
+                </section>
+                <section data-autoskip="1" class="135brush" style="width: 100%;font-size: 14px;text-align:justify;letter-spacing: 1.5px;color:#27bc71;padding: 1em 0px;">
+                  <p>
+                    赏花佳期：3月初—4月中旬
+                  </p>
+                  <p>
+                    春天的新津梨花溪，最令人期待的就是那万亩梨园。那百年老梨树进入三月的盛花期后，让整个梨花溪变成满山遍野的雪白世界。
+                  </p>
+                </section>
+              </section>
+            </section>
+          </section>
+          <section style="background: url(http://bmob-cdn-17111.b0.upaiyun.com/2019/04/27/4bf3189c40afe1a48067a41e310c534f.png)no-repeat;">
+            <img style="width: 100%;display: block;" ignore src="http://bmob-cdn-17111.b0.upaiyun.com/2019/04/27/4bf3189c40afe1a48067a41e310c534f.png" />
+          </section>
+        </section>
+      </section>
+      <section class="_135editor" style="border: 0px none;margin: 20px auto 0px auto;">
+        <section style="background: url(http://bmob-cdn-17111.b0.upaiyun.com/2019/04/27/dd12edb3400b842280b18efa9b1f5448.png)no-repeat;background-position:right ;background-size:30px ;padding-bottom:50px;">
+          <section class="135brush" data-brushtype="text" style="text-align: center;font-size: 18px;font-weight: bold;letter-spacing: 2px;">
+            石象湖郁金香
+          </section>
+        </section>
+      </section>
+      <section class="_135editor" style="border: 0px none;margin-top: -60px;">
+        <section style="padding: 1em;">
+          <section style="width: 100%;background: url(http://bmob-cdn-17111.b0.upaiyun.com/2019/04/27/7ab786e74080c125806db1aad3b1a6b7.png)no-repeat;background-position:top ;background-size:100%;">
+            <img style="width: 100%;display: block;opacity: 0;" ignore src="http://bmob-cdn-17111.b0.upaiyun.com/2019/04/27/7ab786e74080c125806db1aad3b1a6b7.png" />
+          </section>
+          <section style="width: 100%;background: url(http://bmob-cdn-17111.b0.upaiyun.com/2019/04/27/99a6ea6c402bc4828066cc7bf0d85877.png)repeat-y;background-position:top ;background-size:100%;">
+            <section style="padding:10px;">
+              <section style="margin-top: -3em;">
+                <section style="width: 30px;">
+                  <img style="width: 100%;display: block;margin-top: 12px;" ignore src="http://bmob-cdn-17111.b0.upaiyun.com/2019/04/27/761efe0440ac78e68047bbdbd67ea829.png" />
+                </section>
+                <section style="width: 35px;float: right;">
+                  <img style="width: 100%;display: block;margin-bottom:-20px;" ignore src="http://bmob-cdn-17111.b0.upaiyun.com/2019/04/27/2d54163040c4fa6680346968ee918c36.png" />
+                </section>
+              </section>
+              <section style="clear: both;"></section>
+              <section style="background: rgb(254,254,254);border-radius:10px;padding:30px 30px 10px 30px;">
+                <section>
+                  <section style="width:2em;height:2em;background: #f0f187;opacity: 0.6;float: right;margin-bottom: -1.5em;margin-right:-8px;"></section>
+                  <section style="width: 100%;clear: both;-webkit-box-shadow:0px 2px 6px #c4c4c3;transform: rotate(0deg);-webkit-transform: rotate(0deg);-moz-transform: rotate(0deg);-o-transform: rotate(0deg);">
+                    <img style="width: 100%;display: block;" src="http://bmob-cdn-17111.b0.upaiyun.com/2019/04/27/d4ab589f40d9706880521e5768e7e23d.jpg" />
+                  </section>
+                  <section style="width:2em;height:2em;background: #c4f9d2;margin-top: -1.5em;margin-left:-8px;"></section>
+                </section>
+                <section data-autoskip="1" class="135brush" style="width: 100%;font-size: 14px;text-align:justify;letter-spacing: 1.5px;color:#27bc71;padding: 1em 0px;">
+                  <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 赏花佳期：3月—4月
+                  </p>
+                  <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 石象湖是西部的郁金香王国，号称花中贵妇的郁金香目前在国内基本上是高成本温室栽培，大面积室外培育仅石象湖一家。与往届相比，今年花会规模更大、品种更多、配套活动更丰富多彩。几百万株郁金香将让游客充分领略到春的气息。
+                  </p>
+                </section>
+              </section>
+            </section>
+          </section>
+          <section style="background: url(http://bmob-cdn-17111.b0.upaiyun.com/2019/04/27/4bf3189c40afe1a48067a41e310c534f.png)no-repeat;">
+            <img style="width: 100%;display: block;" ignore src="http://bmob-cdn-17111.b0.upaiyun.com/2019/04/27/4bf3189c40afe1a48067a41e310c534f.png" />
+          </section>
+        </section>
+      </section>
+      <section class="_135editor" style="border: 0px none;margin: 20px auto 0px auto;">
+        <section style="background: url(http://bmob-cdn-17111.b0.upaiyun.com/2019/04/27/5c73c648405b0af780959fcbbe0a1663.png)no-repeat;background-position:left ;background-size:30px;padding-bottom:50px;">
+          <section class="135brush" data-brushtype="text" style="text-align: center;font-size: 18px;font-weight: bold;letter-spacing: 2px;">
+            邛崃天台山茶花
+          </section>
+        </section>
+      </section>
+      <section class="_135editor" style="border: 0px none;margin-top: -60px;">
+        <section style="padding: 1em;">
+          <section style="width: 100%;background: url(http://bmob-cdn-17111.b0.upaiyun.com/2019/04/27/7ab786e74080c125806db1aad3b1a6b7.png)no-repeat;background-position:top ;background-size:100%;">
+            <img style="width: 100%;display: block;opacity: 0;" ignore src="http://bmob-cdn-17111.b0.upaiyun.com/2019/04/27/7ab786e74080c125806db1aad3b1a6b7.png" />
+          </section>
+          <section style="width: 100%;background: url(http://bmob-cdn-17111.b0.upaiyun.com/2019/04/27/99a6ea6c402bc4828066cc7bf0d85877.png)repeat-y;background-position:top ;background-size:100%;">
+            <section style="padding:10px;">
+              <section style="margin-top: -3em;">
+                <section style="width: 30px;">
+                  <img style="width: 100%;display: block;margin-top: 12px;" ignore src="http://bmob-cdn-17111.b0.upaiyun.com/2019/04/27/761efe0440ac78e68047bbdbd67ea829.png" />
+                </section>
+                <section style="width: 35px;float: right;">
+                  <img style="width: 100%;display: block;margin-bottom:-20px;" ignore src="http://bmob-cdn-17111.b0.upaiyun.com/2019/04/27/2d54163040c4fa6680346968ee918c36.png" />
+                </section>
+              </section>
+              <section style="clear: both;"></section>
+              <section style="background: rgb(254,254,254);border-radius:10px;padding:30px 30px 10px 30px;">
+                <section>
+                  <section style="width:2em;height:2em;background: #f0f187;opacity: 0.6;float: right;margin-bottom: -1.5em;margin-right:-8px;"></section>
+                  <section style="width: 100%;clear: both;-webkit-box-shadow:0px 2px 6px #c4c4c3;transform: rotate(0deg);-webkit-transform: rotate(0deg);-moz-transform: rotate(0deg);-o-transform: rotate(0deg);">
+                    <img style="width: 100%;display: block;" src="http://bmob-cdn-17111.b0.upaiyun.com/2019/04/27/37be197640d9511580e70e7dbaf8c126.jpg" />
+                  </section>
+                  <section style="width:2em;height:2em;background: #c4f9d2;margin-top: -1.5em;margin-left:-8px;"></section>
+                </section>
+                <section data-autoskip="1" class="135brush" style="width: 100%;font-size: 14px;text-align:justify;letter-spacing: 1.5px;color:#27bc71;padding: 1em 0px;">
+                  <p>
+                    赏花佳期：即日—3月底
+                  </p>
+                  <p>
+                    天台山的山茶花本是西南红山茶的变种，从红色渐次演绎出粉红、桃红、白色等多种颜色，至今都还没有正式命名。景区20平方公里范围内，分布有树龄达100年以上野生山茶树10多万株，是四川省内分布面积最广，数量最大的高山野生山茶花群落。
+                  </p>
+                </section>
+              </section>
+            </section>
+          </section>
+          <section style="background: url(http://bmob-cdn-17111.b0.upaiyun.com/2019/04/27/4bf3189c40afe1a48067a41e310c534f.png)no-repeat;">
+            <img style="width: 100%;display: block;" ignore src="http://bmob-cdn-17111.b0.upaiyun.com/2019/04/27/4bf3189c40afe1a48067a41e310c534f.png" />
+          </section>
+        </section>
+      </section>
+      <section class="_135editor" style="border: 0px none;margin: 0px auto 0px auto;">
+        <section data-autoskip="1" class="135brush" style="width: 100%;font-size: 14px;text-align:center;letter-spacing: 1.5px;color:#1f9459;padding: 1em 0px;">
+          <p>
+            模板来自135编辑器（侵删）
+          </p>
+        </section>
+      </section>
+    </section>
+  </section>
+</section>`
+Page({
+  onLoad(e) {
+    this.setData({
+      html: e.index == "0" ? html0 : html1
+    })
   },
   downloadfile(e) {
-    if (e.detail.indexOf('docx') != -1) {
+    if (e.detail&&e.detail.indexOf('docx') != -1) {
       wx.showLoading({
         title: '附件下载中',
       })

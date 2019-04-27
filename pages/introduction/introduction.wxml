@@ -205,7 +205,7 @@
       </view>
       <view class="weui-article__h1">性能指标</view>
       <view class="weui-article__section">解析效率高，支持无限层级，包装成自定义组件，简便易用，大小仅约
-        <text class="code">28KB</text>
+        <text class="code">33.8KB</text>
       </view>
       <view class="weui-article__h1">后端解析</view>
       <view class="weui-article__section">该插件同样可以应用在后端
